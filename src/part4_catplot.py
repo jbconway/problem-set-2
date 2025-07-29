@@ -4,7 +4,8 @@ PART 4: CATEGORICAL PLOTS
 - Update main() in main.py to generate the plots and print statments when called
 - All plots should be output as PNG files to `data/part4_plots`
 '''
-
+import seaborn as sns
+import matplotlib.pyplot as plt
 ##  UPDATE `part1_etl.py`  ##
 # 1. The charge_no column in arrest events tells us the charge degree and offense category for each arrest charge. 
 # An arrest can have multiple charges. We want to know if an arrest had at least one felony charge.
@@ -20,16 +21,40 @@ PART 4: CATEGORICAL PLOTS
 
 ##  PLOTS  ##
 # 1. Create a catplot where the categories are charge type and the y-axis is the prediction for felony rearrest. Set kind='bar'.
-
-
+def cat_plot_felony_rearrest(pre_universe_merged):
+    sns.catplot(data=pre_universe_merged, kind='bar',
+                x='has_felony_charge', y='predicted_felony',
+                aspect=1.5)
+    plt.title('Prediction for Felony Rearrest by Charge Type')
+    plt.xlabel('Has Felony Charge')
+    plt.ylabel('Predicted Felony Rearrest')
+    plt.savefig('data/part4_plots/felony_rearrest_prediction.png')
+    plt.close()
 # 2. Now repeat but have the y-axis be prediction for nonfelony rearrest
-# 
+def cat_plot_nonfelony_rearrest(pre_universe_merged):
+    sns.catplot(data=pre_universe_merged, kind='bar',
+                x='has_felony_charge', y='predicted_nonfelony',
+                aspect=1.5)
+    plt.title('Prediction for Nonfelony Rearrest by Charge Type')
+    plt.xlabel('Has Felony Charge')
+    plt.ylabel('Predicted Nonfelony Rearrest')
+    plt.savefig('data/part4_plots/nonfelony_rearrest_prediction.png')
+    plt.close()
+
 # In a print statement, answer the following question: What might explain the difference between the plots?
-
-
+print("")
 # 3. Repeat the plot from 1, but hue by whether the person actually got rearrested for a felony crime
-# 
+def cat_plot_felony_rearrest_hue(pre_universe_merged):
+    sns.catplot(data=pre_universe_merged, kind='bar',
+                x='has_felony_charge', y='predicted_felony',
+                hue='rearrested_felony', aspect=1.5)
+    plt.title('Prediction for Felony Rearrest by Charge Type and Actual Rearrest')
+    plt.xlabel('Has Felony Charge')
+    plt.ylabel('Predicted Felony Rearrest')
+    plt.savefig('data/part4_plots/felony_rearrest_prediction_hue.png')
+    plt.close()
 # In a print statement, answer the following question: 
 # What does it mean that prediction for arrestees with a current felony charge, 
 # but who did not get rearrested for a felony crime have a higher predicted probability than arrestees with a current misdemeanor charge, 
 # but who did get rearrested for a felony crime?
+print("")
