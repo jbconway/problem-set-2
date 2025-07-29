@@ -30,12 +30,20 @@ def main():
 
     ##  PART 3: BAR PLOTS AND HISTOGRAMS  ##
     # 1
+    print("generating bar plot for FTA...")
+    part3.bar_plot(pred_universe)
 
     # 2
+    print("generating bar plot for FTA by sex...")
+    part3.bar_plot_with_hue(pred_universe)
 
     # 3
+    print("generating histogram for age at arrest...")
+    part3.histogram_age(pred_universe)
 
     # 4
+    print("generating histogram for age at arrest (grouped)...")
+    part3.histogram_age_groups(pred_universe)
 
     ##  PART 4: CATEGORICAL PLOTS  ##
     # 1
