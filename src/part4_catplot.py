@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 # 1. Create a catplot where the categories are charge type and the y-axis is the prediction for felony rearrest. Set kind='bar'.
 def cat_plot_felony_rearrest(pre_universe_merged):
     sns.catplot(data=pre_universe_merged, kind='bar',
-                x='has_felony_charge', y='predicted_felony',
+                x='has_felony_charge', y='prediction_felony',
                 aspect=1.5)
     plt.title('Prediction for Felony Rearrest by Charge Type')
     plt.xlabel('Has Felony Charge')
@@ -33,7 +33,7 @@ def cat_plot_felony_rearrest(pre_universe_merged):
 # 2. Now repeat but have the y-axis be prediction for nonfelony rearrest
 def cat_plot_nonfelony_rearrest(pre_universe_merged):
     sns.catplot(data=pre_universe_merged, kind='bar',
-                x='has_felony_charge', y='predicted_nonfelony',
+                x='has_felony_charge', y='prediction_nonfelony',
                 aspect=1.5)
     plt.title('Prediction for Nonfelony Rearrest by Charge Type')
     plt.xlabel('Has Felony Charge')
@@ -43,11 +43,17 @@ def cat_plot_nonfelony_rearrest(pre_universe_merged):
 
 # In a print statement, answer the following question: What might explain the difference between the plots?
 print("")
+print("The difference between the predicted felony and non-felony "
+"rearrest plots may be explained by how the risk model weighs different types of offenses. "
+"Individuals with current felony charges are likely assigned higher risk scores for felony rearrest,"
+" while those with less severe current charges may be assigned lower risk scores even if they still face "
+"non-felony rearrest. This reflects how charge severity influences predicted outcomes.")
+
 # 3. Repeat the plot from 1, but hue by whether the person actually got rearrested for a felony crime
 def cat_plot_felony_rearrest_hue(pre_universe_merged):
     sns.catplot(data=pre_universe_merged, kind='bar',
-                x='has_felony_charge', y='predicted_felony',
-                hue='rearrested_felony', aspect=1.5)
+                x='has_felony_charge', y='prediction_felony',
+                hue='y_felony', aspect=1.5)
     plt.title('Prediction for Felony Rearrest by Charge Type and Actual Rearrest')
     plt.xlabel('Has Felony Charge')
     plt.ylabel('Predicted Felony Rearrest')

@@ -47,10 +47,15 @@ def main():
 
     ##  PART 4: CATEGORICAL PLOTS  ##
     # 1
-    
+    print("generating cat plot for felony rearrest prediction...")
+    part4.cat_plot_felony_rearrest(pre_universe_merged)
     # 2
-
+    print("generating cat plot for nonfelony rearrest prediction...")
+    part4.cat_plot_nonfelony_rearrest(pre_universe_merged)
     # 3
+    print("generating cat plot for felony rearrest prediction with hue...")
+    part4.cat_plot_felony_rearrest_hue(pre_universe_merged)
+
 
     ##  PART 5: SCATTERPLOTS  ##
     # 1
