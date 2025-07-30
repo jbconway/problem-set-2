@@ -17,7 +17,8 @@ def scatterplot_felony_nonfelony(pred_universe):
     plt.savefig('data/part5_plots/scatterplot_felony_nonfelony.png')
     plt.close()
 # In a print statement, answer the following question: What can you say about the group of dots on the right side of the plot?
-print("")
+print("The dots on the right side show people with a high predicted chance of being rearrested for a felony. Most of them also have high nonfelony scores, which means the model sees them as high risk for any kind of rearrest.")
+
 # 2. Create a scatterplot where the x-axis is prediction for felony rearrest and the y-axis is whether someone was actually rearrested.
 def scatterplot_felony_rearrest(pred_universe):
     sns.scatterplot(data=pred_universe, x='prediction_felony', y='y_felony', alpha=0.6)
@@ -27,4 +28,4 @@ def scatterplot_felony_rearrest(pred_universe):
     plt.savefig('data/part5_plots/scatterplot_felony_rearrest.png')
     plt.close()
 # In a print statement, answer the following question: Would you say based off of this plot if the model is calibrated or not?
-print("")
+print("The model seems somewhat calibrated—people with higher predicted scores are more likely to have actually been rearrested. But it’s not perfect, since there are still some people with high scores who weren’t rearrested.")

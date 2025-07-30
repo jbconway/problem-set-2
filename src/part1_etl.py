@@ -37,6 +37,7 @@ def extract_transform():
     charge_counts = arrest_events.groupby(['charge_degree']).size().reset_index(name='count')
     charge_counts_by_offense = arrest_events.groupby(['charge_degree', 'offense_category']).size().reset_index(name='count')
     
+    # 1. The charge_no column in arrest events tells us the charge degree and offense category for each arrest charge. 
     felony_charge = arrest_events.groupby('arrest_id').apply(
         lambda x: pd.Series({'has_felony_charge': (x['charge_degree'] == 'F').any()})
     ).reset_index()

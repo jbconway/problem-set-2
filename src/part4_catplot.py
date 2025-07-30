@@ -42,12 +42,8 @@ def cat_plot_nonfelony_rearrest(pre_universe_merged):
     plt.close()
 
 # In a print statement, answer the following question: What might explain the difference between the plots?
-print("")
-print("The difference between the predicted felony and non-felony "
-"rearrest plots may be explained by how the risk model weighs different types of offenses. "
-"Individuals with current felony charges are likely assigned higher risk scores for felony rearrest,"
-" while those with less severe current charges may be assigned lower risk scores even if they still face "
-"non-felony rearrest. This reflects how charge severity influences predicted outcomes.")
+print("The model predicts higher risk for felony rearrest when someone has a serious (felony) charge now. People with less serious charges get lower felony risk, even if they might get rearrested for a less serious crime.")
+
 
 # 3. Repeat the plot from 1, but hue by whether the person actually got rearrested for a felony crime
 def cat_plot_felony_rearrest_hue(pre_universe_merged):
@@ -63,4 +59,4 @@ def cat_plot_felony_rearrest_hue(pre_universe_merged):
 # What does it mean that prediction for arrestees with a current felony charge, 
 # but who did not get rearrested for a felony crime have a higher predicted probability than arrestees with a current misdemeanor charge, 
 # but who did get rearrested for a felony crime?
-print("")
+print("This shows that the model focuses more on the current charge when making predictions,and how severe they are. So, if someone has a felony charge now, the model gives them a higher risk score—even if they don’t actually get rearrested. Meanwhile, someone with a less serious charge might get a lower score, even if they do get rearrested for a felony.")
