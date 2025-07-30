@@ -59,9 +59,11 @@ def main():
 
     ##  PART 5: SCATTERPLOTS  ##
     # 1
-    
+    print("generating scatter plot for felony vs nonfelony predictions...")
+    part5.scatterplot_felony_nonfelony(pre_universe_merged)
     # 2
-
+    print("generating scatter plot for felony rearrest prediction vs actual rearrest...")
+    part5.scatterplot_felony_rearrest(pre_universe_merged)
 
 if __name__ == "__main__":
     main()
