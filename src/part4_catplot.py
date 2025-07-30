@@ -22,27 +22,31 @@ import matplotlib.pyplot as plt
 ##  PLOTS  ##
 # 1. Create a catplot where the categories are charge type and the y-axis is the prediction for felony rearrest. Set kind='bar'.
 def cat_plot_felony_rearrest(pre_universe_merged):
+    pre_universe_merged['charge_type'] = pre_universe_merged['has_felony_charge'].map({True: 'Felony', False: 'Non-Felony'})
     sns.catplot(data=pre_universe_merged, kind='bar',
-                x='has_felony_charge', y='prediction_felony',
+                x='charge_type', y='prediction_felony',
                 aspect=1.5)
     plt.title('Prediction for Felony Rearrest by Charge Type')
-    plt.xlabel('Has Felony Charge')
+    plt.xlabel('Current Charge Type')
     plt.ylabel('Predicted Felony Rearrest')
     plt.savefig('data/part4_plots/felony_rearrest_prediction.png')
     plt.close()
-# 2. Now repeat but have the y-axis be prediction for nonfelony rearrest
+
+# 2. Repeat for nonfelony
 def cat_plot_nonfelony_rearrest(pre_universe_merged):
+    pre_universe_merged['charge_type'] = pre_universe_merged['has_felony_charge'].map({True: 'Felony', False: 'Non-Felony'})
     sns.catplot(data=pre_universe_merged, kind='bar',
-                x='has_felony_charge', y='prediction_nonfelony',
+                x='charge_type', y='prediction_nonfelony',
                 aspect=1.5)
     plt.title('Prediction for Nonfelony Rearrest by Charge Type')
-    plt.xlabel('Has Felony Charge')
+    plt.xlabel('Current Charge Type')
     plt.ylabel('Predicted Nonfelony Rearrest')
     plt.savefig('data/part4_plots/nonfelony_rearrest_prediction.png')
     plt.close()
 
 # In a print statement, answer the following question: What might explain the difference between the plots?
-print("The model predicts higher risk for felony rearrest when someone has a serious (felony) charge now. People with less serious charges get lower felony risk, even if they might get rearrested for a less serious crime.")
+print("What might explain the difference between the plots?")
+print("The model predicts that people who have a current felony are more likely to be rearrested for a less serious crime. This could be due to the fact that people with felony charges don't want to be charged again or because they are on probation, have had access to counciling, etc.")
 
 
 # 3. Repeat the plot from 1, but hue by whether the person actually got rearrested for a felony crime
@@ -59,4 +63,5 @@ def cat_plot_felony_rearrest_hue(pre_universe_merged):
 # What does it mean that prediction for arrestees with a current felony charge, 
 # but who did not get rearrested for a felony crime have a higher predicted probability than arrestees with a current misdemeanor charge, 
 # but who did get rearrested for a felony crime?
-print("This shows that the model focuses more on the current charge when making predictions,and how severe they are. So, if someone has a felony charge now, the model gives them a higher risk score—even if they don’t actually get rearrested. Meanwhile, someone with a less serious charge might get a lower score, even if they do get rearrested for a felony.")
+print("What does it mean that prediction for arrestees with a current felony charge, but who did not get rearrested for a felony crime have a higher predicted probability than arrestees with a current misdemeanor charge, but who did get rearrested for a felony crime?")
+print("This shows that the model focuses more on the current charge when making predictions,and how severe they are. So, if someone has a felony charge now, the model gives them a higher risk score even if they don’t actually get rearrested. Meanwhile, someone with a less serious charge might get a lower score, even if they do get rearrested for a felony.")

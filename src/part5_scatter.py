@@ -9,15 +9,17 @@ import matplotlib.pyplot as plt
 
 # 1. Using lmplot, create a scatter plot where the x-axis is the prediction for felony and the y-axis the is prediction for a nonfelony, and hue this by whether the current charge is a felony. 
 def scatterplot_felony_nonfelony(pred_universe):
+    plt.clf()
     sns.lmplot(data=pred_universe, x='prediction_felony', y='prediction_nonfelony',
-               hue='has_felony_charge', aspect=1.5)
+               hue='y_felony', aspect=1.5,palette={True: 'red', False: 'blue'})
     plt.title('Scatter Plot of Felony vs Nonfelony Predictions')
     plt.xlabel('Prediction for Felony Rearrest')
     plt.ylabel('Prediction for Nonfelony Rearrest')
     plt.savefig('data/part5_plots/scatterplot_felony_nonfelony.png')
     plt.close()
 # In a print statement, answer the following question: What can you say about the group of dots on the right side of the plot?
-print("The dots on the right side show people with a high predicted chance of being rearrested for a felony. Most of them also have high nonfelony scores, which means the model sees them as high risk for any kind of rearrest.")
+print("What can you say about the group of dots on the right side of the plot?")
+print("There are more red dots on the right side of the plot which means that people who have a current felony charge are predicited to more likely have a rearrest for both a felony and nonfelony charge")
 
 # 2. Create a scatterplot where the x-axis is prediction for felony rearrest and the y-axis is whether someone was actually rearrested.
 def scatterplot_felony_rearrest(pred_universe):
@@ -28,4 +30,5 @@ def scatterplot_felony_rearrest(pred_universe):
     plt.savefig('data/part5_plots/scatterplot_felony_rearrest.png')
     plt.close()
 # In a print statement, answer the following question: Would you say based off of this plot if the model is calibrated or not?
-print("The model seems somewhat calibrated—people with higher predicted scores are more likely to have actually been rearrested. But it’s not perfect, since there are still some people with high scores who weren’t rearrested.")
+print("Would you say based off of this plot if the model is calibrated or not?")
+print("The model seems somewhat calibrated because people with higher predicted scores are more likely to have actually been rearrested. But it’s not perfect, since those with lower predicted scores did still get rearrested.")
